@@ -1,0 +1,57 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+
+servers:
+  - url: http://petstore.swagger.io/v1
+
+paths:
+  /login:
+    post:
+      summary: avtoriz
+      description: avtoriz polzovately
+      requestBody:
+        description: 'body or resp'
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/loginrequest"
+      responses:
+        '200':
+          description: 'good'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/authrespons"
+
+components:
+  schemas:
+    loginrequest:
+          properties:
+            login:
+              description: login
+              type: string
+              example: abc
+            password:
+              description: password
+              type: string
+              example: abc
+          required:
+            - login
+            - password
+          
+    authrespons:
+      properties:
+        profile:
+          $ref: "#/components/schemas/profile"
+        token:
+          type: string
+          example: sdfdscsdcdsfsdfdscsdc
+    profile:
+      properties:
+        profile:
+          $ref: "#/components/schemas/profile"
+        token:
+          type: string
+          example: sdfdscsdcdsfsdfdscsdc
