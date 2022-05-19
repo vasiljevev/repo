@@ -1,0 +1,59 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+
+servers:
+  - url: https://mockend.com/vasiljevev/repo/posts
+
+paths:
+  /login:
+    get:
+      summary: get summ information
+      description: get summ information from https://picsum.photos/
+      requestBody: 
+        description: 'Body or request for url'
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/login_request"
+      responses:
+        '200':
+          description: 'All good mutherfucrek'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/auth_respons"
+
+components:
+  schemas:
+    login_request:
+          properties:
+            login:
+              description: login of user
+              type: string
+              example: user1
+            password:
+              description: password of user
+              type: string
+              example: abcDecs33sc-+dcs!
+          required:
+            - login
+            - password
+
+          
+    auth_respons:
+      properties:
+        profile:
+          $ref: "#/components/schemas/profile"
+        auth_token:
+          type: string
+          example: sdfdscsdcdsfsdfdscsdc
+    profile:
+      properties:
+        profile_id:
+          type: string
+          example: vfdtgfdgdfg
+        profile_token:
+          type: string
+          example: refdbfhtr
