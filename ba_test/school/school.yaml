@@ -4,54 +4,56 @@ info:
   title: Swagger Petstore
 
 servers:
-  - url: http://petstore.swagger.io/v1
+  - url: https://mockend.com/vasiljevev/repo/posts
 
 paths:
   /login:
-    post:
-      summary: avtoriz
-      description: avtoriz polzovately
-      requestBody:
-        description: 'body or resp'
+    get:
+      summary: get summ information
+      description: get summ information from https://picsum.photos/
+      requestBody: 
+        description: 'Body or request for url'
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/loginrequest"
+              $ref: "#/components/schemas/login_request"
       responses:
         '200':
-          description: 'good'
+          description: 'All good mutherfucrek'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/authrespons"
+                $ref: "#/components/schemas/auth_respons"
 
 components:
   schemas:
-    loginrequest:
+    login_request:
           properties:
             login:
-              description: login
+              description: login of user
               type: string
-              example: abc
+              example: user1
             password:
-              description: password
+              description: password of user
               type: string
-              example: abc
+              example: abcDecs33sc-+dcs!
           required:
             - login
             - password
+
           
-    authrespons:
+    auth_respons:
       properties:
         profile:
           $ref: "#/components/schemas/profile"
-        token:
+        auth_token:
           type: string
           example: sdfdscsdcdsfsdfdscsdc
     profile:
       properties:
-        profile:
-          $ref: "#/components/schemas/profile"
-        token:
+        profile_id:
           type: string
-          example: sdfdscsdcdsfsdfdscsdc
+          example: vfdtgfdgdfg
+        profile_token:
+          type: string
+          example: refdbfhtr
