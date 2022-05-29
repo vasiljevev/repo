@@ -1,0 +1,5466 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "ЕДИНАЯ ИНФОРМАЦИОННАЯ СИСТЕМА ЖИЛИЩНОГО СТРОИТЕЛЬСТВА «СВЕДЕНИЯ О ЖИЛИЩНОМ СТРОИТЕЛЬСТВЕ»",
+    "version" : "3.0.10",
+    "title" : "СВЕДЕНИЯ О ЖИЛИЩНОМ СТРОИТЕЛЬСТВЕ",
+    "contact" : {
+      "name" : "Evgenii.Solovev@domrf.ru"
+    }
+  },
+  "host" : "10.153.2.24:4010/v2",
+  "basePath" : "",
+  "tags" : [ {
+    "name" : "Сведения о сервисе"
+  }, {
+    "name" : "Сведения о жилых комплексах"
+  }, {
+    "name" : "Сведения о объектах строительства"
+  }, {
+    "name" : "Сведения о застройщиках"
+  }, {
+    "name" : "Сведения о группах компаний"
+  }, {
+    "name" : "Сведения о проблемных объектах"
+  } ],
+  "schemes" : [ "http", "https" ],
+  "paths" : {
+    "/model/current" : {
+      "get" : {
+        "tags" : [ "Сведения о сервисе" ],
+        "summary" : "Получение текущей модели данных",
+        "description" : "",
+        "operationId" : "current",
+        "produces" : [ "application/xml" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "204" : {
+            "description" : "Запрос выполнен успешно, но тело ответа не содержит данных"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        }
+      }
+    },
+    "/version" : {
+      "get" : {
+        "tags" : [ "Сведения о сервисе" ],
+        "summary" : "Получение версии",
+        "description" : "",
+        "operationId" : "getVersion",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Версия передана"
+          }
+        }
+      }
+    },
+    "/complexes/{complex-id}/construction-objects" : {
+      "get" : {
+        "tags" : [ "Сведения о жилых комплексах" ],
+        "summary" : "Получение списка объектов строительства жилого комплекса",
+        "description" : "",
+        "operationId" : "listObjects",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "complex-id",
+          "in" : "path",
+          "description" : "Идентификатор жилого комплекса",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "build-permit-number",
+          "in" : "query",
+          "description" : "Номер разрешения на строительство",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "build-permit-date",
+          "in" : "query",
+          "description" : "Дата разрешения на строительство",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "project-declaration-number",
+          "in" : "query",
+          "description" : "Номер проектной декларации",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "project-declaration-publish-date",
+          "in" : "query",
+          "description" : "Дата публикации проектной декларации",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "object-region-code",
+          "in" : "query",
+          "description" : "Код региона объекта",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "status",
+          "in" : "query",
+          "description" : "Статус объекта",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "storeys-from",
+          "in" : "query",
+          "description" : "Этажность, от",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "storeys-to",
+          "in" : "query",
+          "description" : "Этажность, до",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "apartments-count-from",
+          "in" : "query",
+          "description" : "Количество квартир, от",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "apartments-count-to",
+          "in" : "query",
+          "description" : "Количество квартир, до",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "living-area-from",
+          "in" : "query",
+          "description" : "Жилая площадь, от",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "living-area-to",
+          "in" : "query",
+          "description" : "Жилая площадь, до",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "object-developer-inn",
+          "in" : "query",
+          "description" : "ИНН Застройщика",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "address",
+          "in" : "query",
+          "description" : "Адрес",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "commissioning-plan-date-from",
+          "in" : "query",
+          "description" : "Плановая дата ввода в эксплуатацию, от",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "commissioning-plan-date-to",
+          "in" : "query",
+          "description" : "Плановая дата ввода в эксплуатацию, до",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Начальная страница",
+          "required" : false,
+          "type" : "integer",
+          "default" : 0
+        }, {
+          "name" : "size",
+          "in" : "query",
+          "description" : "Количество элементов в выводе",
+          "required" : false,
+          "type" : "integer",
+          "default" : 10
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "404" : {
+            "description" : "Вызов метода завершился с ошибкой: запрошенный ресурс не найден. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/complexes/{complex-id}" : {
+      "get" : {
+        "tags" : [ "Сведения о жилых комплексах" ],
+        "summary" : "Получение сведений о жилом комплексе",
+        "description" : "",
+        "operationId" : "getSingle",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "complex-id",
+          "in" : "path",
+          "description" : "Идентификатор жилого комплекса",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "404" : {
+            "description" : "Вызов метода завершился с ошибкой: запрошенный ресурс не найден. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/complexes" : {
+      "get" : {
+        "tags" : [ "Сведения о жилых комплексах" ],
+        "summary" : "Получение списка жилых комплексов застройщика",
+        "description" : "",
+        "operationId" : "listComplexes",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "group-id",
+          "in" : "query",
+          "description" : "Идентификатор группы компаний",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "developer-id",
+          "in" : "query",
+          "description" : "Идентификатор застройщика",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "name",
+          "in" : "query",
+          "description" : "Наименование жилого комплекса",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "region-code",
+          "in" : "query",
+          "description" : "Код региона жилого комплекса",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Начальная страница",
+          "required" : false,
+          "type" : "integer",
+          "default" : 0
+        }, {
+          "name" : "size",
+          "in" : "query",
+          "description" : "Количество элементов в выводе",
+          "required" : false,
+          "type" : "integer",
+          "default" : 10
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/construction-objects/{object-id}/photos" : {
+      "get" : {
+        "tags" : [ "Сведения о объектах строительства" ],
+        "summary" : "Получение списка фотографий хода строительства по идентификатору объекта строительства",
+        "description" : "",
+        "operationId" : "listPhotos",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "object-id",
+          "in" : "path",
+          "description" : "Идентификатор объекта",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Начальная страница",
+          "required" : false,
+          "type" : "integer",
+          "default" : 0
+        }, {
+          "name" : "size",
+          "in" : "query",
+          "description" : "Количество элементов в выводе",
+          "required" : false,
+          "type" : "integer",
+          "default" : 10
+        }, {
+          "name" : "report-date-from",
+          "in" : "query",
+          "description" : "Отчетный период, от",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "report-date-to",
+          "in" : "query",
+          "description" : "Отчетный период, до",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "404" : {
+            "description" : "Вызов метода завершился с ошибкой: запрошенный ресурс не найден. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/construction-objects/{object-id}/extended" : {
+      "get" : {
+        "tags" : [ "Сведения о объектах строительства" ],
+        "summary" : "Получение расширенных сведений об объекте строительства",
+        "description" : "",
+        "operationId" : "getExtendedSingle",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "object-id",
+          "in" : "path",
+          "description" : "Идентификатор объекта",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "404" : {
+            "description" : "Вызов метода завершился с ошибкой: запрошенный ресурс не найден. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/construction-objects" : {
+      "get" : {
+        "tags" : [ "Сведения о объектах строительства" ],
+        "summary" : "Получение списка объектов строительства",
+        "description" : "",
+        "operationId" : "listObjects_1",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "group-id",
+          "in" : "query",
+          "description" : "Идентификатор группы компаний",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "developer-id",
+          "in" : "query",
+          "description" : "Идентификатор застройщика",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "complex-id",
+          "in" : "query",
+          "description" : "Идентификатор жилого комплекса",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "region-code",
+          "in" : "query",
+          "description" : "Код региона жилого комплекса",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "developer-inn",
+          "in" : "query",
+          "description" : "ИНН застройщика",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "is-problem-object",
+          "in" : "query",
+          "description" : "Признак \"Проблемный объект\"",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "build-permit-number",
+          "in" : "query",
+          "description" : "Номер разрешения на строительство",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "build-permit-date",
+          "in" : "query",
+          "description" : "Дата разрешения на строительство",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "project-declaration-number",
+          "in" : "query",
+          "description" : "Номер проектной декларации",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "project-declaration-publish-date",
+          "in" : "query",
+          "description" : "Дата публикации проектной декларации",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "object-region-code",
+          "in" : "query",
+          "description" : "Код региона объекта",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "status",
+          "in" : "query",
+          "description" : "Статус объекта",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "storeys-from",
+          "in" : "query",
+          "description" : "Этажность, от",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "storeys-to",
+          "in" : "query",
+          "description" : "Этажность, до",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "apartments-count-from",
+          "in" : "query",
+          "description" : "Количество квартир, от",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "apartments-count-to",
+          "in" : "query",
+          "description" : "Количество квартир, до",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "living-area-from",
+          "in" : "query",
+          "description" : "Жилая площадь, от",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "living-area-to",
+          "in" : "query",
+          "description" : "Жилая площадь, до",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "object-developer-inn",
+          "in" : "query",
+          "description" : "ИНН Застройщика",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "address",
+          "in" : "query",
+          "description" : "Адрес",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "commissioning-plan-date-from",
+          "in" : "query",
+          "description" : "Плановая дата ввода в эксплуатацию, от",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "commissioning-plan-date-to",
+          "in" : "query",
+          "description" : "Плановая дата ввода в эксплуатацию, до",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Начальная страница",
+          "required" : false,
+          "type" : "integer",
+          "default" : 0
+        }, {
+          "name" : "size",
+          "in" : "query",
+          "description" : "Количество элементов в выводе",
+          "required" : false,
+          "type" : "integer",
+          "default" : 10
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/construction-objects/{object-id}" : {
+      "get" : {
+        "tags" : [ "Сведения о объектах строительства" ],
+        "summary" : "Получение сведений об объекте строительства",
+        "description" : "",
+        "operationId" : "getSingle_1",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "object-id",
+          "in" : "path",
+          "description" : "Идентификатор объекта",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "404" : {
+            "description" : "Вызов метода завершился с ошибкой: запрошенный ресурс не найден. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/construction-objects/{object-id}/documents" : {
+      "get" : {
+        "tags" : [ "Сведения о объектах строительства" ],
+        "summary" : "Получение списка документов по объекту строительства",
+        "description" : "",
+        "operationId" : "listDocuments",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "object-id",
+          "in" : "path",
+          "description" : "Идентификатор объекта",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "form-code",
+          "in" : "query",
+          "description" : "Форма документа",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "publish-date-from",
+          "in" : "query",
+          "description" : "Дата размещения, от",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "publish-date-to",
+          "in" : "query",
+          "description" : "Дата размещения, до",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Начальная страница",
+          "required" : false,
+          "type" : "integer",
+          "default" : 0
+        }, {
+          "name" : "size",
+          "in" : "query",
+          "description" : "Количество элементов в выводе",
+          "required" : false,
+          "type" : "integer",
+          "default" : 10
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "404" : {
+            "description" : "Вызов метода завершился с ошибкой: запрошенный ресурс не найден. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/construction-objects/{object-id}/files/{file-id}" : {
+      "get" : {
+        "tags" : [ "Сведения о объектах строительства" ],
+        "summary" : "Получение контента файла, относящегося к объекту строительства, по его идентификатору",
+        "description" : "",
+        "operationId" : "getIdentifyFile",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "object-id",
+          "in" : "path",
+          "description" : "Идентификатор объекта",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "file-id",
+          "in" : "path",
+          "description" : "Идентификатор файла",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "204" : {
+            "description" : "Запрос выполнен успешно, но тело ответа не содержит данных, т.к. по заданным параметрам поиска ресурсы не найдены"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "404" : {
+            "description" : "Вызов метода завершился с ошибкой: запрошенный ресурс не найден. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/developers/{developer-id}/extended" : {
+      "get" : {
+        "tags" : [ "Сведения о застройщиках" ],
+        "summary" : "Получение расширенных сведений о застройщике",
+        "description" : "",
+        "operationId" : "getExtendedSingle_1",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "developer-id",
+          "in" : "path",
+          "description" : "Идентификатор застройщика",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "404" : {
+            "description" : "Вызов метода завершился с ошибкой: запрошенный ресурс не найден. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/developers/{developer-id}/construction-objects" : {
+      "get" : {
+        "tags" : [ "Сведения о застройщиках" ],
+        "summary" : "Получение списка объектов строительства застройщика",
+        "description" : "",
+        "operationId" : "listObjects_2",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "developer-id",
+          "in" : "path",
+          "description" : "Идентификатор застройщика",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "build-permit-number",
+          "in" : "query",
+          "description" : "Номер разрешения на строительство",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "build-permit-date",
+          "in" : "query",
+          "description" : "Дата разрешения на строительство",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "project-declaration-number",
+          "in" : "query",
+          "description" : "Номер проектной декларации",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "project-declaration-publish-date",
+          "in" : "query",
+          "description" : "Дата публикации проектной декларации",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "object-region-code",
+          "in" : "query",
+          "description" : "Код региона объекта",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "status",
+          "in" : "query",
+          "description" : "Статус объекта",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "storeys-from",
+          "in" : "query",
+          "description" : "Этажность, от",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "storeys-to",
+          "in" : "query",
+          "description" : "Этажность, до",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "apartments-count-from",
+          "in" : "query",
+          "description" : "Количество квартир, от",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "apartments-count-to",
+          "in" : "query",
+          "description" : "Количество квартир, до",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "living-area-from",
+          "in" : "query",
+          "description" : "Жилая площадь, от",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "living-area-to",
+          "in" : "query",
+          "description" : "Жилая площадь, до",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "object-developer-inn",
+          "in" : "query",
+          "description" : "ИНН Застройщика",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "address",
+          "in" : "query",
+          "description" : "Адрес",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "commissioning-plan-date-from",
+          "in" : "query",
+          "description" : "Плановая дата ввода в эксплуатацию, от",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "commissioning-plan-date-to",
+          "in" : "query",
+          "description" : "Плановая дата ввода в эксплуатацию, до",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Начальная страница",
+          "required" : false,
+          "type" : "integer",
+          "default" : 0
+        }, {
+          "name" : "size",
+          "in" : "query",
+          "description" : "Количество элементов в выводе",
+          "required" : false,
+          "type" : "integer",
+          "default" : 10
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "404" : {
+            "description" : "Вызов метода завершился с ошибкой: запрошенный ресурс не найден. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/developers/{developer-id}" : {
+      "get" : {
+        "tags" : [ "Сведения о застройщиках" ],
+        "summary" : "Получение сведений о застройщике",
+        "description" : "",
+        "operationId" : "getSingle_2",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "developer-id",
+          "in" : "path",
+          "description" : "Идентификатор застройщика",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "404" : {
+            "description" : "Вызов метода завершился с ошибкой: запрошенный ресурс не найден. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/developers/{developer-id}/complexes" : {
+      "get" : {
+        "tags" : [ "Сведения о застройщиках" ],
+        "summary" : "Получение списка жилых комплексов застройщика",
+        "description" : "",
+        "operationId" : "listComplexes_1",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "developer-id",
+          "in" : "path",
+          "description" : "Идентификатор застройщика",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "name",
+          "in" : "query",
+          "description" : "Наименование жилого комплекса",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Начальная страница",
+          "required" : false,
+          "type" : "integer",
+          "default" : 0
+        }, {
+          "name" : "size",
+          "in" : "query",
+          "description" : "Количество элементов в выводе",
+          "required" : false,
+          "type" : "integer",
+          "default" : 10
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "404" : {
+            "description" : "Вызов метода завершился с ошибкой: запрошенный ресурс не найден. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/developers/{developer-id}/documents" : {
+      "get" : {
+        "tags" : [ "Сведения о застройщиках" ],
+        "summary" : "Получение списка документов, относящихся к документам застройщика",
+        "description" : "",
+        "operationId" : "listDocuments_1",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "developer-id",
+          "in" : "path",
+          "description" : "Идентификатор застройщика",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "form-code",
+          "in" : "query",
+          "description" : "Форма документа",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "publish-date-from",
+          "in" : "query",
+          "description" : "Дата размещения, от",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "publish-date-to",
+          "in" : "query",
+          "description" : "Дата размещения, до",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Начальная страница",
+          "required" : false,
+          "type" : "integer",
+          "default" : 0
+        }, {
+          "name" : "size",
+          "in" : "query",
+          "description" : "Количество элементов в выводе",
+          "required" : false,
+          "type" : "integer",
+          "default" : 10
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "404" : {
+            "description" : "Вызов метода завершился с ошибкой: запрошенный ресурс не найден. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/developers/{developer-id}/files/{file-id}" : {
+      "get" : {
+        "tags" : [ "Сведения о застройщиках" ],
+        "summary" : "Получение контента файла, относящегося к застройщику, по его идентификатору",
+        "description" : "",
+        "operationId" : "getIdentityFile",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "developer-id",
+          "in" : "path",
+          "description" : "Идентификатор застройщика",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "file-id",
+          "in" : "path",
+          "description" : "Идентификатор файла",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "204" : {
+            "description" : "Запрос выполнен успешно, но тело ответа не содержит данных, т.к. по заданным параметрам поиска ресурсы не найдены"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "404" : {
+            "description" : "Вызов метода завершился с ошибкой: запрошенный ресурс не найден. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/developers" : {
+      "get" : {
+        "tags" : [ "Сведения о застройщиках" ],
+        "summary" : "Получение списка застройщиков",
+        "description" : "",
+        "operationId" : "list",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "query",
+          "description" : "Наименование застройщика",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "business-region-code",
+          "in" : "query",
+          "description" : "Код региона хозяйственной деятельности",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "inn",
+          "in" : "query",
+          "description" : "ИНН застройщика",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "ogrn",
+          "in" : "query",
+          "description" : "ОГРН застройщика",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "group-id",
+          "in" : "query",
+          "description" : "Идентификатор группы компаний",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Начальная страница",
+          "required" : false,
+          "type" : "integer",
+          "default" : 0
+        }, {
+          "name" : "size",
+          "in" : "query",
+          "description" : "Количество элементов в выводе",
+          "required" : false,
+          "type" : "integer",
+          "default" : 10
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/company-groups/{group-id}/developers" : {
+      "get" : {
+        "tags" : [ "Сведения о группах компаний" ],
+        "summary" : "Получение списка застройщиков группы компаний",
+        "description" : "",
+        "operationId" : "listDevelopers",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "group-id",
+          "in" : "path",
+          "description" : "Идентификатор группы компаний",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "name",
+          "in" : "query",
+          "description" : "Наименование застройщика",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "business-region-code",
+          "in" : "query",
+          "description" : "Код региона хозяйственной деятельности",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "inn",
+          "in" : "query",
+          "description" : "ИНН застройщика",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "ogrn",
+          "in" : "query",
+          "description" : "ОГРН застройщика",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Начальная страница",
+          "required" : false,
+          "type" : "integer",
+          "default" : 0
+        }, {
+          "name" : "size",
+          "in" : "query",
+          "description" : "Количество элементов в выводе",
+          "required" : false,
+          "type" : "integer",
+          "default" : 10
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "404" : {
+            "description" : "Вызов метода завершился с ошибкой: запрошенный ресурс не найден. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/company-groups/{group-id}/construction-objects" : {
+      "get" : {
+        "tags" : [ "Сведения о группах компаний" ],
+        "summary" : "Получение списка объектов строительства группы компаний",
+        "description" : "",
+        "operationId" : "listObjects_3",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "group-id",
+          "in" : "path",
+          "description" : "Идентификатор группы компаний",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "developer-id",
+          "in" : "query",
+          "description" : "Идентификатор застройщика",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "build-permit-number",
+          "in" : "query",
+          "description" : "Номер разрешения на строительство",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "build-permit-date",
+          "in" : "query",
+          "description" : "Дата разрешения на строительство",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "project-declaration-number",
+          "in" : "query",
+          "description" : "Номер проектной декларации",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "project-declaration-publish-date",
+          "in" : "query",
+          "description" : "Дата публикации проектной декларации",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "object-region-code",
+          "in" : "query",
+          "description" : "Код региона объекта",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "status",
+          "in" : "query",
+          "description" : "Статус объекта",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "storeys-from",
+          "in" : "query",
+          "description" : "Этажность, от",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "storeys-to",
+          "in" : "query",
+          "description" : "Этажность, до",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "apartments-count-from",
+          "in" : "query",
+          "description" : "Количество квартир, от",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "apartments-count-to",
+          "in" : "query",
+          "description" : "Количество квартир, до",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "living-area-from",
+          "in" : "query",
+          "description" : "Жилая площадь, от",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "living-area-to",
+          "in" : "query",
+          "description" : "Жилая площадь, до",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "object-developer-inn",
+          "in" : "query",
+          "description" : "ИНН Застройщика",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "address",
+          "in" : "query",
+          "description" : "Адрес",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "commissioning-plan-date-from",
+          "in" : "query",
+          "description" : "Плановая дата ввода в эксплуатацию, от",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "commissioning-plan-date-to",
+          "in" : "query",
+          "description" : "Плановая дата ввода в эксплуатацию, до",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Начальная страница",
+          "required" : false,
+          "type" : "integer",
+          "default" : 0
+        }, {
+          "name" : "size",
+          "in" : "query",
+          "description" : "Количество элементов в выводе",
+          "required" : false,
+          "type" : "integer",
+          "default" : 10
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "404" : {
+            "description" : "Вызов метода завершился с ошибкой: запрошенный ресурс не найден. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/company-groups/{group-id}" : {
+      "get" : {
+        "tags" : [ "Сведения о группах компаний" ],
+        "summary" : "Получение сведений о группе компаний",
+        "description" : "",
+        "operationId" : "getSingle_3",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "group-id",
+          "in" : "path",
+          "description" : "Идентификатор группы компаний",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "404" : {
+            "description" : "Вызов метода завершился с ошибкой: запрошенный ресурс не найден. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/company-groups/{group-id}/complexes" : {
+      "get" : {
+        "tags" : [ "Сведения о группах компаний" ],
+        "summary" : "Получение списка жилых комплексов группы компаний",
+        "description" : "",
+        "operationId" : "listComplexes_2",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "group-id",
+          "in" : "path",
+          "description" : "Идентификатор группы компаний",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "developer-id",
+          "in" : "query",
+          "description" : "Идентификатор застройщика",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "name",
+          "in" : "query",
+          "description" : "Наименование жилого комплекса",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Начальная страница",
+          "required" : false,
+          "type" : "integer",
+          "default" : 0
+        }, {
+          "name" : "size",
+          "in" : "query",
+          "description" : "Количество элементов в выводе",
+          "required" : false,
+          "type" : "integer",
+          "default" : 10
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "404" : {
+            "description" : "Вызов метода завершился с ошибкой: запрошенный ресурс не найден. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/company-groups" : {
+      "get" : {
+        "tags" : [ "Сведения о группах компаний" ],
+        "summary" : "Получение списка групп компаний",
+        "description" : "",
+        "operationId" : "list_1",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "query",
+          "description" : "Наименование группы компаний",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "business-region-code",
+          "in" : "query",
+          "description" : "Код региона хозяйственной деятельности",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Начальная страница",
+          "required" : false,
+          "type" : "integer",
+          "default" : 0
+        }, {
+          "name" : "size",
+          "in" : "query",
+          "description" : "Количество элементов в выводе",
+          "required" : false,
+          "type" : "integer",
+          "default" : 10
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/problem-objects" : {
+      "get" : {
+        "tags" : [ "Сведения о проблемных объектах" ],
+        "summary" : "Получение списка проблемных объектов",
+        "description" : "",
+        "operationId" : "listObjects_4",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "developer-id",
+          "in" : "query",
+          "description" : "Идентификатор застройщика",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "complex-id",
+          "in" : "query",
+          "description" : "Идентификатор жилого комплекса",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "region-code",
+          "in" : "query",
+          "description" : "Код региона",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "developer-inn",
+          "in" : "query",
+          "description" : "ИНН застройщика",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "living-area-from",
+          "in" : "query",
+          "description" : "Жилая площадь, от",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "living-area-to",
+          "in" : "query",
+          "description" : "Жилая площадь, до",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "commissioning-plan-date-from",
+          "in" : "query",
+          "description" : "Плановая дата ввода в эксплуатацию, от",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "commissioning-plan-date-to",
+          "in" : "query",
+          "description" : "Плановая дата ввода в эксплуатацию, до",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "construction-object-id",
+          "in" : "query",
+          "description" : "Идентификатор объекта строительства",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "is-open-receivership-proceedings",
+          "in" : "query",
+          "description" : "Признак \"Открыто конкурсное производство\"",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "is-other-bankruptcy-procedure",
+          "in" : "query",
+          "description" : "Признак \"Введена иная процедура банкротства\"",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "is-completion-date-overdue",
+          "in" : "query",
+          "description" : "Признак \"Просрочен срок завершения\"",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "is-deadline-transferring-object-overdue",
+          "in" : "query",
+          "description" : "Признак \"Просрочен срок передачи объекта дольщикам\"",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "address",
+          "in" : "query",
+          "description" : "Адрес",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "main-criterion-name",
+          "in" : "query",
+          "description" : "Основной критерий проблемности",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Начальная страница",
+          "required" : false,
+          "type" : "integer",
+          "default" : 0
+        }, {
+          "name" : "size",
+          "in" : "query",
+          "description" : "Количество элементов в выводе",
+          "required" : false,
+          "type" : "integer",
+          "default" : 10
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/problem-objects/{problem-object-id}" : {
+      "get" : {
+        "tags" : [ "Сведения о проблемных объектах" ],
+        "summary" : "Получение сведений о проблемном объекте",
+        "description" : "",
+        "operationId" : "getSingle_4",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "problem-object-id",
+          "in" : "path",
+          "description" : "Идентификатор проблемного объекта",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос выполнен успешно, тело ответа содержит запрошенный ресурс или массив ресурсов"
+          },
+          "400" : {
+            "description" : "Вызов метода завершился с ошибкой: обнаружены синтаксические ошибки на стороне клиента. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "403" : {
+            "description" : "Доступ запрещен"
+          },
+          "404" : {
+            "description" : "Вызов метода завершился с ошибкой: запрошенный ресурс не найден. Информация об ошибке включена в тело ответа в формате Error"
+          },
+          "500" : {
+            "description" : "Вызов метода завершился с ошибкой: произошла внутренняя ошибка на стороне сервера. Информация об ошибке включена в тело ответа в формате Error"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    }
+  },
+  "definitions" : {
+    "VersionType" : {
+      "type" : "object",
+      "required" : [ "buildBranch", "buildCommit", "buildTimestamp", "projectVersion" ],
+      "properties" : {
+        "buildCommit" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "BuildCommit",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "buildBranch" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "BuildBranch",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "buildTimestamp" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "BuildTimestamp",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "projectVersion" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "ProjectVersion",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      },
+      "xml" : {
+        "name" : "Version",
+        "namespace" : "https://uishc.domrf.ru/api/basic"
+      }
+    },
+    "AddressComplexType" : {
+      "type" : "object",
+      "properties" : {
+        "addressString" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "AddressString",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "address" : {
+          "xml" : {
+            "name" : "Address",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/AddressType"
+        }
+      }
+    },
+    "AddressType" : {
+      "type" : "object",
+      "required" : [ "region" ],
+      "properties" : {
+        "index" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Index",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "region" : {
+          "xml" : {
+            "name" : "Region",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/RegionType"
+        },
+        "district" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "District",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "localityType" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "LocalityType",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "localityName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "LocalityName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "streetType" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "StreetType",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "streetName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "StreetName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "house" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "House",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "letter" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Letter",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "unit" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Unit",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "building" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Building",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "domain" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Domain",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "additionalInfo" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "AdditionalInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "BuildPermitInfoType" : {
+      "type" : "object",
+      "properties" : {
+        "number" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Number",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "issueDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "IssueDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "validityDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "ValidityDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "renewalDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "RenewalDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "issuedBy" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "IssuedBy",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "BuildPermitInfoTypeList" : {
+      "type" : "object",
+      "properties" : {
+        "buildPermitInfo" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "BuildPermitInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "BuildPermitInfo"
+            },
+            "$ref" : "#/definitions/BuildPermitInfoType"
+          }
+        }
+      }
+    },
+    "CompanyGroupShortInfoType" : {
+      "type" : "object",
+      "required" : [ "groupId", "name" ],
+      "properties" : {
+        "groupId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "GroupId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "name" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Name",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "businessRegions" : {
+          "xml" : {
+            "name" : "BusinessRegions",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/RegionTypeList"
+        }
+      }
+    },
+    "ComplexBaseInfoType" : {
+      "type" : "object",
+      "required" : [ "complexId" ],
+      "properties" : {
+        "complexId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ComplexId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "shortName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "ShortName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "ComplexBaseInfoTypeList" : {
+      "type" : "object",
+      "required" : [ "complex" ],
+      "properties" : {
+        "complex" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "Complex",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "Complex"
+            },
+            "$ref" : "#/definitions/ComplexBaseInfoType"
+          }
+        }
+      }
+    },
+    "ComplexShortInfoType" : {
+      "type" : "object",
+      "required" : [ "complexId", "developerId", "fullName" ],
+      "properties" : {
+        "complexId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ComplexId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "shortName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "ShortName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "fullName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "FullName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "coordinates" : {
+          "xml" : {
+            "name" : "Coordinates",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/CoordinatesType"
+        },
+        "constructionObjects" : {
+          "xml" : {
+            "name" : "ConstructionObjects",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/ConstructionObjectBaseInfoTypeList"
+        },
+        "developerId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "DeveloperId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "groupId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "GroupId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      },
+      "xml" : {
+        "name" : "ComplexShortInfo",
+        "namespace" : "https://uishc.domrf.ru/api/basic"
+      }
+    },
+    "ConstructionObjectBaseInfoType" : {
+      "type" : "object",
+      "required" : [ "address", "objectId" ],
+      "properties" : {
+        "objectId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ObjectId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "titleName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "TitleName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "address" : {
+          "xml" : {
+            "name" : "Address",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/AddressComplexType"
+        }
+      }
+    },
+    "ConstructionObjectBaseInfoTypeList" : {
+      "type" : "object",
+      "required" : [ "constructionObject" ],
+      "properties" : {
+        "constructionObject" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "ConstructionObject",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "ConstructionObject"
+            },
+            "$ref" : "#/definitions/ConstructionObjectBaseInfoType"
+          }
+        }
+      }
+    },
+    "ConstructionObjectShortInfoType" : {
+      "type" : "object",
+      "required" : [ "address", "apartmentsCount", "buildPermitInfo", "buildRegion", "developerId", "livingArea", "nonResidentalArea", "objectId", "objectStatus", "projectDeclaration", "totalArea" ],
+      "properties" : {
+        "objectId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ObjectId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "titleName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "TitleName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "address" : {
+          "xml" : {
+            "name" : "Address",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/AddressComplexType"
+        },
+        "coordinates" : {
+          "xml" : {
+            "name" : "Coordinates",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/CoordinatesType"
+        },
+        "buildPermitInfo" : {
+          "xml" : {
+            "name" : "BuildPermitInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/BuildPermitInfoTypeList"
+        },
+        "projectDeclaration" : {
+          "xml" : {
+            "name" : "ProjectDeclaration",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/ProjectDeclarationType"
+        },
+        "buildRegion" : {
+          "xml" : {
+            "name" : "BuildRegion",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/RegionType"
+        },
+        "objectStatus" : {
+          "xml" : {
+            "name" : "ObjectStatus",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "storeys" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "Storeys",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "apartmentsCount" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ApartmentsCount",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "livingArea" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "LivingArea",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "nonResidentalArea" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "NonResidentalArea",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "totalArea" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "TotalArea",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "commissioningPlanDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "CommissioningPlanDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "developerId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "DeveloperId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "complexId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ComplexId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "groupId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "GroupId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "isProblemObject" : {
+          "type" : "boolean",
+          "xml" : {
+            "name" : "IsProblemObject",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      },
+      "xml" : {
+        "name" : "ConstructionObjectShortInfo",
+        "namespace" : "https://uishc.domrf.ru/api/basic"
+      }
+    },
+    "CoordinatesType" : {
+      "type" : "object",
+      "properties" : {
+        "latitude" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "Latitude",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "longitude" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "Longitude",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "DevRegistrationInfoType" : {
+      "type" : "object",
+      "required" : [ "inn", "ogrn" ],
+      "properties" : {
+        "inn" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "INN",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "ogrn" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "OGRN",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "kpp" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "KPP",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "registerDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "RegisterDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "DeveloperShortInfoType" : {
+      "type" : "object",
+      "required" : [ "developerId", "legalAddress", "nameInfo", "registrationInfo" ],
+      "properties" : {
+        "developerId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "DeveloperId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "nameInfo" : {
+          "xml" : {
+            "name" : "NameInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/NameInfoType"
+        },
+        "legalAddress" : {
+          "xml" : {
+            "name" : "LegalAddress",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/AddressComplexType"
+        },
+        "registrationInfo" : {
+          "xml" : {
+            "name" : "RegistrationInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/DevRegistrationInfoType"
+        },
+        "businessRegions" : {
+          "xml" : {
+            "name" : "BusinessRegions",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/RegionTypeList"
+        },
+        "complexes" : {
+          "xml" : {
+            "name" : "Complexes",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/ComplexBaseInfoTypeList"
+        },
+        "constructionObjects" : {
+          "xml" : {
+            "name" : "ConstructionObjects",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/ConstructionObjectBaseInfoTypeList"
+        },
+        "groupId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "GroupId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      },
+      "xml" : {
+        "name" : "DeveloperShortInfo",
+        "namespace" : "https://uishc.domrf.ru/api/basic"
+      }
+    },
+    "DocumentInfoType" : {
+      "type" : "object",
+      "required" : [ "documentId", "files", "form", "status" ],
+      "properties" : {
+        "documentId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "DocumentId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "status" : {
+          "xml" : {
+            "name" : "Status",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "name" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Name",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "form" : {
+          "xml" : {
+            "name" : "Form",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "publishDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "PublishDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "files" : {
+          "xml" : {
+            "name" : "Files",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/FileInfoTypeList"
+        }
+      },
+      "xml" : {
+        "name" : "DocumentInfo",
+        "namespace" : "https://uishc.domrf.ru/api/basic"
+      }
+    },
+    "Elements" : {
+      "type" : "object",
+      "properties" : {
+        "companyGroupShortInfo" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "CompanyGroupShortInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "CompanyGroupShortInfo"
+            },
+            "$ref" : "#/definitions/CompanyGroupShortInfoType"
+          }
+        },
+        "developerShortInfo" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "DeveloperShortInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "DeveloperShortInfo"
+            },
+            "$ref" : "#/definitions/DeveloperShortInfoType"
+          }
+        },
+        "complexShortInfo" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "ComplexShortInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "ComplexShortInfo"
+            },
+            "$ref" : "#/definitions/ComplexShortInfoType"
+          }
+        },
+        "constructionObjectShortInfo" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "ConstructionObjectShortInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "ConstructionObjectShortInfo"
+            },
+            "$ref" : "#/definitions/ConstructionObjectShortInfoType"
+          }
+        },
+        "problemObjectShortInfo" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "ProblemObjectShortInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "ProblemObjectShortInfo"
+            },
+            "$ref" : "#/definitions/ProblemObjectShortInfoType"
+          }
+        },
+        "documentInfo" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "DocumentInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "DocumentInfo"
+            },
+            "$ref" : "#/definitions/DocumentInfoType"
+          }
+        },
+        "objectPhoto" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "ObjectPhoto",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "ObjectPhoto"
+            },
+            "$ref" : "#/definitions/ObjectPhotoType"
+          }
+        }
+      }
+    },
+    "FileInfoType" : {
+      "type" : "object",
+      "required" : [ "extension", "fileId", "name" ],
+      "properties" : {
+        "fileId" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "FileId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "name" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Name",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "extension" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Extension",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "size" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "Size",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "uploadDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "UploadDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      },
+      "xml" : {
+        "name" : "FileInfo",
+        "namespace" : "https://uishc.domrf.ru/api/basic"
+      }
+    },
+    "FileInfoTypeList" : {
+      "type" : "object",
+      "properties" : {
+        "fileInfo" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "FileInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "FileInfo"
+            },
+            "$ref" : "#/definitions/FileInfoType"
+          }
+        }
+      }
+    },
+    "NameInfoType" : {
+      "type" : "object",
+      "required" : [ "legalForm", "shortName" ],
+      "properties" : {
+        "legalForm" : {
+          "xml" : {
+            "name" : "LegalForm",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "shortName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "ShortName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "fullName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "FullName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "commercialName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "CommercialName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "ObjectPhotoType" : {
+      "type" : "object",
+      "required" : [ "fileInfo", "orderNumber", "periodDate" ],
+      "properties" : {
+        "orderNumber" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "OrderNumber",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "periodDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "PeriodDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "fileInfo" : {
+          "xml" : {
+            "name" : "FileInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/FileInfoType"
+        }
+      },
+      "xml" : {
+        "name" : "ObjectPhoto",
+        "namespace" : "https://uishc.domrf.ru/api/basic"
+      }
+    },
+    "PaginationResponseType" : {
+      "type" : "object",
+      "required" : [ "elements", "limitItems", "total" ],
+      "properties" : {
+        "total" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "Total",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "limitItems" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "LimitItems",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "elements" : {
+          "xml" : {
+            "name" : "Elements",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/Elements"
+        }
+      },
+      "xml" : {
+        "name" : "PaginationResponse",
+        "namespace" : "https://uishc.domrf.ru/api/basic"
+      }
+    },
+    "ProblemObjectShortInfoType" : {
+      "type" : "object",
+      "required" : [ "buildRegion", "developerId", "lastInclusionDate", "problemObjectId" ],
+      "properties" : {
+        "problemObjectId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ProblemObjectId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "titleName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "TitleName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "address" : {
+          "xml" : {
+            "name" : "Address",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/AddressComplexType"
+        },
+        "problemObjectIdSurrogateKey" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ProblemObjectIdSurrogateKey",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "buildRegion" : {
+          "xml" : {
+            "name" : "BuildRegion",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/RegionType"
+        },
+        "commissioningPlanDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "CommissioningPlanDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "developerId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "DeveloperId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "complexId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ComplexId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "constructionObjectId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ConstructionObjectId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "isOpenReceivershipProceedings" : {
+          "type" : "boolean",
+          "xml" : {
+            "name" : "IsOpenReceivershipProceedings",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "isOtherBankruptcyProcedure" : {
+          "type" : "boolean",
+          "xml" : {
+            "name" : "IsOtherBankruptcyProcedure",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "isCompletionDateOverdue" : {
+          "type" : "boolean",
+          "xml" : {
+            "name" : "IsCompletionDateOverdue",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "isDeadlineTransferringObjectOverdue" : {
+          "type" : "boolean",
+          "xml" : {
+            "name" : "IsDeadlineTransferringObjectOverdue",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "mainCriterion" : {
+          "xml" : {
+            "name" : "MainCriterion",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "lastInclusionDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "LastInclusionDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "lastExclusionDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "LastExclusionDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      },
+      "xml" : {
+        "name" : "ProblemObjectShortInfo",
+        "namespace" : "https://uishc.domrf.ru/api/basic"
+      }
+    },
+    "ProjectDeclarationType" : {
+      "type" : "object",
+      "properties" : {
+        "number" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Number",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "publishDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "PublishDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "RegionType" : {
+      "type" : "object",
+      "required" : [ "code", "name" ],
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Code",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "name" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Name",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "RegionTypeList" : {
+      "type" : "object",
+      "properties" : {
+        "businessRegion" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "BusinessRegion",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "BusinessRegion"
+            },
+            "$ref" : "#/definitions/RegionType"
+          }
+        }
+      }
+    },
+    "SimpleDictionaryType" : {
+      "type" : "object",
+      "required" : [ "code", "name" ],
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Code",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "name" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Name",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "ComplexGenInfoType" : {
+      "type" : "object",
+      "required" : [ "complexId", "developerId", "fullName" ],
+      "properties" : {
+        "complexId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ComplexId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "shortName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "ShortName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "fullName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "FullName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "coordinates" : {
+          "xml" : {
+            "name" : "Coordinates",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/CoordinatesType"
+        },
+        "constructionObjects" : {
+          "xml" : {
+            "name" : "ConstructionObjects",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/ConstructionObjectBaseInfoTypeList"
+        },
+        "developerId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "DeveloperId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "groupId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "GroupId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      },
+      "xml" : {
+        "name" : "ComplexGenInfo",
+        "namespace" : "https://uishc.domrf.ru/api/basic"
+      }
+    },
+    "ArchitecturalDesignType" : {
+      "type" : "object",
+      "properties" : {
+        "legalForm" : {
+          "xml" : {
+            "name" : "LegalForm",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "fullName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "FullName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "lastName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "LastName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "firstName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "FirstName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "middleName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "MiddleName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "inn" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "INN",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "ArchitecturalDesignTypeList" : {
+      "type" : "object",
+      "required" : [ "elements" ],
+      "properties" : {
+        "elements" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "Elements",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "Elements"
+            },
+            "$ref" : "#/definitions/ArchitecturalDesignType"
+          }
+        }
+      }
+    },
+    "BankInfoType" : {
+      "type" : "object",
+      "properties" : {
+        "bankId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "BankId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "name" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Name",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "bik" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "BIK",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "inn" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "INN",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "kpp" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "KPP",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "ogrn" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "OGRN",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "ConstructionObjectExtInfoType" : {
+      "type" : "object",
+      "required" : [ "address", "apartmentsCount", "buildPermitInfo", "buildRegion", "constructionSchedules", "developerId", "landPlots", "livingArea", "nonResidentalArea", "objectId", "objectStatus", "objectType", "premises", "projectCost", "projectDeclaration", "purpose", "totalArea" ],
+      "properties" : {
+        "objectId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ObjectId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "titleName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "TitleName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "address" : {
+          "xml" : {
+            "name" : "Address",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/AddressComplexType"
+        },
+        "coordinates" : {
+          "xml" : {
+            "name" : "Coordinates",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/CoordinatesType"
+        },
+        "buildPermitInfo" : {
+          "xml" : {
+            "name" : "BuildPermitInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/BuildPermitInfoTypeList"
+        },
+        "projectDeclaration" : {
+          "xml" : {
+            "name" : "ProjectDeclaration",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/ProjectDeclarationType"
+        },
+        "buildRegion" : {
+          "xml" : {
+            "name" : "BuildRegion",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/RegionType"
+        },
+        "objectStatus" : {
+          "xml" : {
+            "name" : "ObjectStatus",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "storeys" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "Storeys",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "apartmentsCount" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ApartmentsCount",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "livingArea" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "LivingArea",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "nonResidentalArea" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "NonResidentalArea",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "totalArea" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "TotalArea",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "commissioningPlanDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "CommissioningPlanDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "developerId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "DeveloperId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "complexId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ComplexId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "groupId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "GroupId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "isProblemObject" : {
+          "type" : "boolean",
+          "xml" : {
+            "name" : "IsProblemObject",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "objectType" : {
+          "xml" : {
+            "name" : "ObjectType",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "propertyClass" : {
+          "xml" : {
+            "name" : "PropertyClass",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "wallMaterial" : {
+          "xml" : {
+            "name" : "WallMaterial",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "decoration" : {
+          "xml" : {
+            "name" : "Decoration",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "isFreePlan" : {
+          "type" : "boolean",
+          "xml" : {
+            "name" : "IsFreePlan",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "carPlaceCount" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "CarPlaceCount",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "objectsRenders" : {
+          "xml" : {
+            "name" : "ObjectsRenders",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/ObjectRenderTypeList"
+        },
+        "landPlots" : {
+          "xml" : {
+            "name" : "LandPlots",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/LandPlotTypeList"
+        },
+        "constructionSchedules" : {
+          "xml" : {
+            "name" : "ConstructionSchedules",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/ConstructionScheduleTypeList"
+        },
+        "projectCost" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "ProjectCost",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "purpose" : {
+          "xml" : {
+            "name" : "Purpose",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "floorMaterial" : {
+          "xml" : {
+            "name" : "FloorMaterial",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "premises" : {
+          "xml" : {
+            "name" : "Premises",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/PremisesType"
+        },
+        "securingObligationsInfo" : {
+          "xml" : {
+            "name" : "SecuringObligationsInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SecuringObligationsInfoType"
+        },
+        "targetLoans" : {
+          "xml" : {
+            "name" : "TargetLoans",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/TargetLoanTypeList"
+        },
+        "operationPermission" : {
+          "xml" : {
+            "name" : "OperationPermission",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/OperationPermissionTypeList"
+        },
+        "engineeringResearch" : {
+          "xml" : {
+            "name" : "EngineeringResearch",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/EngineeringResearchTypeList"
+        },
+        "architecturalDesign" : {
+          "xml" : {
+            "name" : "ArchitecturalDesign",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/ArchitecturalDesignTypeList"
+        },
+        "expertiseResult" : {
+          "xml" : {
+            "name" : "ExpertiseResult",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/ExpertiseResultTypeList"
+        },
+        "ecologicExpertiseResult" : {
+          "xml" : {
+            "name" : "EcologicExpertiseResult",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/EcologicExpertiseResultTypeList"
+        },
+        "landOwner" : {
+          "xml" : {
+            "name" : "LandOwner",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/LandOwnerTypeList"
+        },
+        "soldOutPercent" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "SoldOutPercent",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "objectPriceAVG" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ObjectPriceAVG",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "isPDNotUpdateTime" : {
+          "type" : "boolean",
+          "xml" : {
+            "name" : "IsPDNotUpdateTime",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "dduinfo" : {
+          "$ref" : "#/definitions/DDUInfoType"
+        }
+      },
+      "xml" : {
+        "name" : "ConstructionObjectExtInfo",
+        "namespace" : "https://uishc.domrf.ru/api/basic"
+      }
+    },
+    "ConstructionScheduleType" : {
+      "type" : "object",
+      "required" : [ "completionType" ],
+      "properties" : {
+        "completionType" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "CompletionType",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "yearAndQuarter" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "YearAndQuarter",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "comment" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Comment",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "ConstructionScheduleTypeList" : {
+      "type" : "object",
+      "properties" : {
+        "lastPDPublishDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "LastPDPublishDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "lastConstructionSchedules" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "LastConstructionSchedules",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "LastConstructionSchedules"
+            },
+            "$ref" : "#/definitions/ConstructionScheduleType"
+          }
+        },
+        "initialPDPublishDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "InitialPDPublishDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "initialConstructionSchedules" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "InitialConstructionSchedules",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "InitialConstructionSchedules"
+            },
+            "$ref" : "#/definitions/ConstructionScheduleType"
+          }
+        }
+      }
+    },
+    "DDUInfoType" : {
+      "type" : "object",
+      "properties" : {
+        "livSquareAmount" : {
+          "type" : "number",
+          "xml" : {
+            "name" : "LivSquareAmount",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "nonlivSquareAmount" : {
+          "type" : "number",
+          "xml" : {
+            "name" : "NonlivSquareAmount",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "parkingSquareAmount" : {
+          "type" : "number",
+          "xml" : {
+            "name" : "ParkingSquareAmount",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "livPriceAmount" : {
+          "type" : "number",
+          "xml" : {
+            "name" : "LivPriceAmount",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "nonlivPriceAmount" : {
+          "type" : "number",
+          "xml" : {
+            "name" : "NonlivPriceAmount",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "parkingPriceAmount" : {
+          "type" : "number",
+          "xml" : {
+            "name" : "ParkingPriceAmount",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "ddulivNumber" : {
+          "type" : "integer"
+        },
+        "ddunonlivNumber" : {
+          "type" : "integer"
+        },
+        "dduparkingNumber" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "EcologicExpertiseResultType" : {
+      "type" : "object",
+      "properties" : {
+        "date" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "Date",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "number" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Number",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "legalForm" : {
+          "xml" : {
+            "name" : "LegalForm",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "fullName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "FullName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "inn" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "INN",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "EcologicExpertiseResultTypeList" : {
+      "type" : "object",
+      "required" : [ "elements" ],
+      "properties" : {
+        "elements" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "Elements",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "Elements"
+            },
+            "$ref" : "#/definitions/EcologicExpertiseResultType"
+          }
+        }
+      }
+    },
+    "EngineeringResearchType" : {
+      "type" : "object",
+      "properties" : {
+        "legalForm" : {
+          "xml" : {
+            "name" : "LegalForm",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "fullName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "FullName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "lastName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "LastName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "firstName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "FirstName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "middleName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "MiddleName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "inn" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "INN",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "EngineeringResearchTypeList" : {
+      "type" : "object",
+      "required" : [ "elements" ],
+      "properties" : {
+        "elements" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "Elements",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "Elements"
+            },
+            "$ref" : "#/definitions/EngineeringResearchType"
+          }
+        }
+      }
+    },
+    "ExpertiseResultType" : {
+      "type" : "object",
+      "properties" : {
+        "expertiseType" : {
+          "xml" : {
+            "name" : "ExpertiseType",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "date" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "Date",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "number" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Number",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "legalForm" : {
+          "xml" : {
+            "name" : "LegalForm",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "fullName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "FullName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "inn" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "INN",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "ExpertiseResultTypeList" : {
+      "type" : "object",
+      "required" : [ "elements" ],
+      "properties" : {
+        "elements" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "Elements",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "Elements"
+            },
+            "$ref" : "#/definitions/ExpertiseResultType"
+          }
+        }
+      }
+    },
+    "LandOwnerType" : {
+      "type" : "object",
+      "properties" : {
+        "ownerType" : {
+          "xml" : {
+            "name" : "OwnerType",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "legalForm" : {
+          "xml" : {
+            "name" : "LegalForm",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "fullName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "FullName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "lastName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "LastName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "firstName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "FirstName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "middleName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "MiddleName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "inn" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "INN",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "steadOwnershipFormType" : {
+          "xml" : {
+            "name" : "SteadOwnershipFormType",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "ownershipBy" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "OwnershipBy",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "LandOwnerTypeList" : {
+      "type" : "object",
+      "required" : [ "elements" ],
+      "properties" : {
+        "elements" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "Elements",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "Elements"
+            },
+            "$ref" : "#/definitions/LandOwnerType"
+          }
+        }
+      }
+    },
+    "LandPlotType" : {
+      "type" : "object",
+      "properties" : {
+        "cadastralNumber" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "CadastralNumber",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "area" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "Area",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "signDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "SignDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "expDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "ExpDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "rightsType" : {
+          "xml" : {
+            "name" : "RightsType",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        }
+      }
+    },
+    "LandPlotTypeList" : {
+      "type" : "object",
+      "required" : [ "landPlots" ],
+      "properties" : {
+        "landPlots" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "LandPlots",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "LandPlots"
+            },
+            "$ref" : "#/definitions/LandPlotType"
+          }
+        }
+      }
+    },
+    "ObjectRenderType" : {
+      "type" : "object",
+      "required" : [ "orderNumber" ],
+      "properties" : {
+        "orderNumber" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "OrderNumber",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "fileInfo" : {
+          "xml" : {
+            "name" : "FileInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/FileInfoType"
+        }
+      },
+      "xml" : {
+        "name" : "ObjectRender",
+        "namespace" : "https://uishc.domrf.ru/api/basic"
+      }
+    },
+    "ObjectRenderTypeList" : {
+      "type" : "object",
+      "properties" : {
+        "objectRender" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "ObjectRender",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "ObjectRender"
+            },
+            "$ref" : "#/definitions/ObjectRenderType"
+          }
+        }
+      }
+    },
+    "OperationPermissionType" : {
+      "type" : "object",
+      "properties" : {
+        "objectName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "ObjectName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "date" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "Date",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "number" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Number",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "bodyTitle" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "BodyTitle",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "OperationPermissionTypeList" : {
+      "type" : "object",
+      "required" : [ "elements" ],
+      "properties" : {
+        "elements" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "Elements",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "Elements"
+            },
+            "$ref" : "#/definitions/OperationPermissionType"
+          }
+        }
+      }
+    },
+    "PremisesType" : {
+      "type" : "object",
+      "properties" : {
+        "residential" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "Residential",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "nonResidential" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "NonResidential",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "carPlaces" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "CarPlaces",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "otherNonResidential" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "OtherNonResidential",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "oneRoomNumber" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "OneRoomNumber",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "twoRoomNumber" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "TwoRoomNumber",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "threeRoomNumber" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ThreeRoomNumber",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "fourRoomNumber" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "FourRoomNumber",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "moreFourRoomNumber" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "MoreFourRoomNumber",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "SecuringObligationsInfoType" : {
+      "type" : "object",
+      "properties" : {
+        "securingType" : {
+          "xml" : {
+            "name" : "SecuringType",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "escrowBankInfo" : {
+          "xml" : {
+            "name" : "EscrowBankInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/BankInfoType"
+        },
+        "isContributionsToFund" : {
+          "type" : "boolean",
+          "xml" : {
+            "name" : "IsContributionsToFund",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "fundraisingFormType" : {
+          "xml" : {
+            "name" : "FundraisingFormType",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        }
+      }
+    },
+    "TargetLoanType" : {
+      "type" : "object",
+      "properties" : {
+        "legalForm" : {
+          "xml" : {
+            "name" : "LegalForm",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "fullName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "FullName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "inn" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "INN",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "loanLimitAmt" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "LoanLimitAmt",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "loanDebtAmt" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "LoanDebtAmt",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "unusedBalance" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "UnusedBalance",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "datePerformanceObligations" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "DatePerformanceObligations",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "bic" : {
+          "type" : "string",
+          "xml" : {
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "TargetLoanTypeList" : {
+      "type" : "object",
+      "required" : [ "elements" ],
+      "properties" : {
+        "elements" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "Elements",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "Elements"
+            },
+            "$ref" : "#/definitions/TargetLoanType"
+          }
+        }
+      }
+    },
+    "ConstructionObjectGenInfoType" : {
+      "type" : "object",
+      "required" : [ "address", "apartmentsCount", "buildPermitInfo", "buildRegion", "developerId", "livingArea", "nonResidentalArea", "objectId", "objectStatus", "objectType", "projectDeclaration", "totalArea" ],
+      "properties" : {
+        "objectId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ObjectId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "titleName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "TitleName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "address" : {
+          "xml" : {
+            "name" : "Address",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/AddressComplexType"
+        },
+        "coordinates" : {
+          "xml" : {
+            "name" : "Coordinates",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/CoordinatesType"
+        },
+        "buildPermitInfo" : {
+          "xml" : {
+            "name" : "BuildPermitInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/BuildPermitInfoTypeList"
+        },
+        "projectDeclaration" : {
+          "xml" : {
+            "name" : "ProjectDeclaration",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/ProjectDeclarationType"
+        },
+        "buildRegion" : {
+          "xml" : {
+            "name" : "BuildRegion",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/RegionType"
+        },
+        "objectStatus" : {
+          "xml" : {
+            "name" : "ObjectStatus",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "storeys" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "Storeys",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "apartmentsCount" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ApartmentsCount",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "livingArea" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "LivingArea",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "nonResidentalArea" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "NonResidentalArea",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "totalArea" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "TotalArea",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "commissioningPlanDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "CommissioningPlanDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "developerId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "DeveloperId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "complexId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ComplexId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "groupId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "GroupId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "isProblemObject" : {
+          "type" : "boolean",
+          "xml" : {
+            "name" : "IsProblemObject",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "objectType" : {
+          "xml" : {
+            "name" : "ObjectType",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "propertyClass" : {
+          "xml" : {
+            "name" : "PropertyClass",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "wallMaterial" : {
+          "xml" : {
+            "name" : "WallMaterial",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "decoration" : {
+          "xml" : {
+            "name" : "Decoration",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "isFreePlan" : {
+          "type" : "boolean",
+          "xml" : {
+            "name" : "IsFreePlan",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "carPlaceCount" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "CarPlaceCount",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "objectsRenders" : {
+          "xml" : {
+            "name" : "ObjectsRenders",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/ObjectRenderTypeList"
+        }
+      },
+      "xml" : {
+        "name" : "ConstructionObjectGenInfo",
+        "namespace" : "https://uishc.domrf.ru/api/basic"
+      }
+    },
+    "AllianceType" : {
+      "type" : "object",
+      "required" : [ "fullName", "inn" ],
+      "properties" : {
+        "legalForm" : {
+          "xml" : {
+            "name" : "LegalForm",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "fullName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "FullName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "inn" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "INN",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "AllianceTypeList" : {
+      "type" : "object",
+      "required" : [ "selfRegulatoryAlliance" ],
+      "properties" : {
+        "selfRegulatoryAlliance" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "SelfRegulatoryAlliance",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "SelfRegulatoryAlliance"
+            },
+            "$ref" : "#/definitions/AllianceType"
+          }
+        },
+        "notCommercialAlliance" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "NotCommercialAlliance",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "NotCommercialAlliance"
+            },
+            "$ref" : "#/definitions/AllianceType"
+          }
+        }
+      }
+    },
+    "BuildProjectExperienceType" : {
+      "type" : "object",
+      "required" : [ "address", "objectType" ],
+      "properties" : {
+        "objectType" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "ObjectType",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "address" : {
+          "xml" : {
+            "name" : "Address",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/AddressComplexType"
+        },
+        "commercialName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "CommercialName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "commissioningDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "CommissioningDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "commissioningPermitNumber" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "CommissioningPermitNumber",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "commissioningPermitDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "CommissioningPermitDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "commissioningPermitBy" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "CommissioningPermitBy",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "BuildProjectExperienceTypeList" : {
+      "type" : "object",
+      "required" : [ "buildProjectExperience" ],
+      "properties" : {
+        "buildProjectExperience" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "BuildProjectExperience",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "BuildProjectExperience"
+            },
+            "$ref" : "#/definitions/BuildProjectExperienceType"
+          }
+        }
+      }
+    },
+    "CheckingAccountType" : {
+      "type" : "object",
+      "required" : [ "accountNumber", "bankInfo", "buildPermitNumber", "objectId", "openDate", "status" ],
+      "properties" : {
+        "objectId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ObjectId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "buildPermitNumber" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "BuildPermitNumber",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "accountNumber" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "AccountNumber",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "status" : {
+          "xml" : {
+            "name" : "Status",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "openDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "OpenDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "bankInfo" : {
+          "xml" : {
+            "name" : "BankInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/BankInfoType"
+        }
+      }
+    },
+    "CheckingAccountTypeList" : {
+      "type" : "object",
+      "required" : [ "checkingAccount" ],
+      "properties" : {
+        "checkingAccount" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "CheckingAccount",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "CheckingAccount"
+            },
+            "$ref" : "#/definitions/CheckingAccountType"
+          }
+        }
+      }
+    },
+    "ChiefType" : {
+      "type" : "object",
+      "required" : [ "position" ],
+      "properties" : {
+        "lastName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "LastName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "firstName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "FirstName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "patronymic" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Patronymic",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "position" : {
+          "xml" : {
+            "name" : "Position",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        }
+      }
+    },
+    "ChiefTypeList" : {
+      "type" : "object",
+      "required" : [ "chief" ],
+      "properties" : {
+        "chief" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "Chief",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "Chief"
+            },
+            "$ref" : "#/definitions/ChiefType"
+          }
+        }
+      }
+    },
+    "ContactFullInfoType" : {
+      "type" : "object",
+      "properties" : {
+        "phone" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Phone",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "email" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Email",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "site" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Site",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "DeveloperExtInfoType" : {
+      "type" : "object",
+      "required" : [ "contactInfo", "developerId", "founders", "legalAddress", "nameInfo", "registrationInfo" ],
+      "properties" : {
+        "developerId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "DeveloperId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "nameInfo" : {
+          "xml" : {
+            "name" : "NameInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/NameInfoType"
+        },
+        "legalAddress" : {
+          "xml" : {
+            "name" : "LegalAddress",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/AddressComplexType"
+        },
+        "registrationInfo" : {
+          "xml" : {
+            "name" : "RegistrationInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/DevRegistrationInfoType"
+        },
+        "businessRegions" : {
+          "xml" : {
+            "name" : "BusinessRegions",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/RegionTypeList"
+        },
+        "complexes" : {
+          "xml" : {
+            "name" : "Complexes",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/ComplexBaseInfoTypeList"
+        },
+        "constructionObjects" : {
+          "xml" : {
+            "name" : "ConstructionObjects",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/ConstructionObjectBaseInfoTypeList"
+        },
+        "groupId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "GroupId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "factAddress" : {
+          "xml" : {
+            "name" : "FactAddress",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/AddressComplexType"
+        },
+        "contactInfo" : {
+          "xml" : {
+            "name" : "ContactInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/ContactFullInfoType"
+        },
+        "chiefs" : {
+          "xml" : {
+            "name" : "Chiefs",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/ChiefTypeList"
+        },
+        "founders" : {
+          "xml" : {
+            "name" : "Founders",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/FoundersType"
+        },
+        "checkingAccounts" : {
+          "xml" : {
+            "name" : "CheckingAccounts",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/CheckingAccountTypeList"
+        },
+        "buildProjectsExperiences" : {
+          "xml" : {
+            "name" : "BuildProjectsExperiences",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/BuildProjectExperienceTypeList"
+        },
+        "financialResults" : {
+          "xml" : {
+            "name" : "FinancialResults",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/FinancialResultTypeList"
+        },
+        "alliances" : {
+          "xml" : {
+            "name" : "Alliances",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/AllianceTypeList"
+        }
+      },
+      "xml" : {
+        "name" : "DeveloperExtInfo",
+        "namespace" : "https://uishc.domrf.ru/api/basic"
+      }
+    },
+    "FinancialResultType" : {
+      "type" : "object",
+      "properties" : {
+        "reportDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "ReportDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "netProfitAmount" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "NetProfitAmount",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "accountPayableAmount" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "AccountPayableAmount",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "accountReceivable" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "AccountReceivable",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "FinancialResultTypeList" : {
+      "type" : "object",
+      "required" : [ "financialResultType" ],
+      "properties" : {
+        "financialResultType" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "FinancialResultType",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "FinancialResultType"
+            },
+            "$ref" : "#/definitions/FinancialResultType"
+          }
+        }
+      }
+    },
+    "FounderLegalForeignType" : {
+      "type" : "object",
+      "properties" : {
+        "fullName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "FullName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "registrationCountry" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "RegistrationCountry",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "registerDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "RegisterDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "registerNumber" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "RegisterNumber",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "registeredBy" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "RegisteredBy",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "address" : {
+          "xml" : {
+            "name" : "Address",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/AddressComplexType"
+        },
+        "votesPercentage" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "VotesPercentage",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "FounderLegalRfType" : {
+      "type" : "object",
+      "properties" : {
+        "legalForm" : {
+          "xml" : {
+            "name" : "LegalForm",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "fullName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "FullName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "inn" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "INN",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "votesPercentage" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "VotesPercentage",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "FounderPersonType" : {
+      "type" : "object",
+      "properties" : {
+        "lastName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "LastName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "firstName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "FirstName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "patronymic" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Patronymic",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "citizenship" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Citizenship",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "residenceCountry" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "ResidenceCountry",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "votesPercentage" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "VotesPercentage",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        }
+      }
+    },
+    "FoundersType" : {
+      "type" : "object",
+      "properties" : {
+        "founderLegalRf" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "FounderLegalRf",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "FounderLegalRf"
+            },
+            "$ref" : "#/definitions/FounderLegalRfType"
+          }
+        },
+        "founderLegalForeign" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "FounderLegalForeign",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "FounderLegalForeign"
+            },
+            "$ref" : "#/definitions/FounderLegalForeignType"
+          }
+        },
+        "founderPerson" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "FounderPerson",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "FounderPerson"
+            },
+            "$ref" : "#/definitions/FounderPersonType"
+          }
+        }
+      }
+    },
+    "DeveloperGenInfoType" : {
+      "type" : "object",
+      "required" : [ "contactInfo", "developerId", "founders", "legalAddress", "nameInfo", "registrationInfo" ],
+      "properties" : {
+        "developerId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "DeveloperId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "nameInfo" : {
+          "xml" : {
+            "name" : "NameInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/NameInfoType"
+        },
+        "legalAddress" : {
+          "xml" : {
+            "name" : "LegalAddress",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/AddressComplexType"
+        },
+        "registrationInfo" : {
+          "xml" : {
+            "name" : "RegistrationInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/DevRegistrationInfoType"
+        },
+        "businessRegions" : {
+          "xml" : {
+            "name" : "BusinessRegions",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/RegionTypeList"
+        },
+        "complexes" : {
+          "xml" : {
+            "name" : "Complexes",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/ComplexBaseInfoTypeList"
+        },
+        "constructionObjects" : {
+          "xml" : {
+            "name" : "ConstructionObjects",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/ConstructionObjectBaseInfoTypeList"
+        },
+        "groupId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "GroupId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "factAddress" : {
+          "xml" : {
+            "name" : "FactAddress",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/AddressComplexType"
+        },
+        "contactInfo" : {
+          "xml" : {
+            "name" : "ContactInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/ContactFullInfoType"
+        },
+        "chiefs" : {
+          "xml" : {
+            "name" : "Chiefs",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/ChiefTypeList"
+        },
+        "founders" : {
+          "xml" : {
+            "name" : "Founders",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/FoundersType"
+        },
+        "checkingAccounts" : {
+          "xml" : {
+            "name" : "CheckingAccounts",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/CheckingAccountTypeList"
+        }
+      },
+      "xml" : {
+        "name" : "DeveloperGenInfo",
+        "namespace" : "https://uishc.domrf.ru/api/basic"
+      }
+    },
+    "CompanyGroupGenInfoType" : {
+      "type" : "object",
+      "required" : [ "developers", "groupId", "name" ],
+      "properties" : {
+        "groupId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "GroupId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "name" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Name",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "businessRegions" : {
+          "xml" : {
+            "name" : "BusinessRegions",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/RegionTypeList"
+        },
+        "developers" : {
+          "xml" : {
+            "name" : "Developers",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/DeveloperBaseInfoTypeList"
+        },
+        "complexes" : {
+          "xml" : {
+            "name" : "Complexes",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/ComplexBaseInfoTypeList"
+        },
+        "constructionObjects" : {
+          "xml" : {
+            "name" : "ConstructionObjects",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/ConstructionObjectBaseInfoTypeList"
+        }
+      },
+      "xml" : {
+        "name" : "CompanyGroupGenInfo",
+        "namespace" : "https://uishc.domrf.ru/api/basic"
+      }
+    },
+    "DeveloperBaseInfoType" : {
+      "type" : "object",
+      "required" : [ "developerId", "nameInfo" ],
+      "properties" : {
+        "developerId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "DeveloperId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "nameInfo" : {
+          "xml" : {
+            "name" : "NameInfo",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/NameInfoType"
+        }
+      }
+    },
+    "DeveloperBaseInfoTypeList" : {
+      "type" : "object",
+      "required" : [ "developer" ],
+      "properties" : {
+        "developer" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "Developer",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "items" : {
+            "xml" : {
+              "name" : "Developer"
+            },
+            "$ref" : "#/definitions/DeveloperBaseInfoType"
+          }
+        }
+      }
+    },
+    "ProblemObjectGenInfoType" : {
+      "type" : "object",
+      "required" : [ "buildRegion", "developerId", "lastInclusionDate", "problemObjectId" ],
+      "properties" : {
+        "problemObjectId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ProblemObjectId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "titleName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "TitleName",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "address" : {
+          "xml" : {
+            "name" : "Address",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/AddressComplexType"
+        },
+        "problemObjectIdSurrogateKey" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ProblemObjectIdSurrogateKey",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "buildRegion" : {
+          "xml" : {
+            "name" : "BuildRegion",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/RegionType"
+        },
+        "commissioningPlanDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "CommissioningPlanDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "developerId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "DeveloperId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "complexId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ComplexId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "constructionObjectId" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "ConstructionObjectId",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "isOpenReceivershipProceedings" : {
+          "type" : "boolean",
+          "xml" : {
+            "name" : "IsOpenReceivershipProceedings",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "isOtherBankruptcyProcedure" : {
+          "type" : "boolean",
+          "xml" : {
+            "name" : "IsOtherBankruptcyProcedure",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "isCompletionDateOverdue" : {
+          "type" : "boolean",
+          "xml" : {
+            "name" : "IsCompletionDateOverdue",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "isDeadlineTransferringObjectOverdue" : {
+          "type" : "boolean",
+          "xml" : {
+            "name" : "IsDeadlineTransferringObjectOverdue",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "mainCriterion" : {
+          "xml" : {
+            "name" : "MainCriterion",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "lastInclusionDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "LastInclusionDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "lastExclusionDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "xml" : {
+            "name" : "LastExclusionDate",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "livingArea" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "LivingArea",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "nonResidentalArea" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "NonResidentalArea",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "totalArea" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "TotalArea",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "aboveGroundFloorsCount" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "AboveGroundFloorsCount",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "undergroundFloorsCount" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "UndergroundFloorsCount",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "livingAreaDduCount" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "LivingAreaDduCount",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "nonResidentalAreaDduCount" : {
+          "type" : "integer",
+          "xml" : {
+            "name" : "NonResidentalAreaDduCount",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          }
+        },
+        "restoreStatus" : {
+          "xml" : {
+            "name" : "RestoreStatus",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "restoreFacility" : {
+          "xml" : {
+            "name" : "RestoreFacility",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        },
+        "purpose" : {
+          "xml" : {
+            "name" : "Purpose",
+            "namespace" : "https://uishc.domrf.ru/api/basic"
+          },
+          "$ref" : "#/definitions/SimpleDictionaryType"
+        }
+      },
+      "xml" : {
+        "name" : "ProblemObjectGenInfo",
+        "namespace" : "https://uishc.domrf.ru/api/basic"
+      }
+    }
+  }
+}
